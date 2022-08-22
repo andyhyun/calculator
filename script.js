@@ -115,6 +115,14 @@ function doClear() {
   main.textContent = "";
 }
 
+function doKeypress(e) {
+  if (e.key in keyElementMap === false) {
+    return;
+  }
+  
+  keyElementMap[e.key].click();
+}
+
 let memory = document.querySelector(".memory");
 let main = document.querySelector(".main");
 
@@ -125,9 +133,23 @@ let clear = document.querySelector("button[data-type=clear]");
 let decimal = document.querySelector("button[data-type=decimal]");
 let del = document.querySelector("button[data-type=del]");
 
-numbers.forEach((number) => number.addEventListener("click", displayNumber));
-operators.forEach((operator) => operator.addEventListener("click", doOperation));
+let keyElementMap = {};
+
+numbers.forEach((number) => {
+  number.addEventListener("click", displayNumber);
+  keyElementMap[number.textContent] = number;
+});
+operators.forEach((operator) => {
+  operator.addEventListener("click", doOperation);
+  keyElementMap[operator.textContent] = operator;
+});
 equals.addEventListener("click", doEquals);
+keyElementMap["="] = equals;
 clear.addEventListener("click", doClear);
+keyElementMap["c"] = clear;
 decimal.addEventListener("click", doDecimal);
+keyElementMap["."] = decimal;
 del.addEventListener("click", doDelete);
+keyElementMap["d"] = del;
+
+window.addEventListener("keydown", doKeypress);
