@@ -26,3 +26,14 @@ function operate(operator, a, b) {
 
   return operations[operator](a, b);
 }
+
+function populateDisplay() {
+  main.textContent = `${main.textContent}${this.textContent}`;
+}
+
+let memory = document.querySelector(".memory");
+let main = document.querySelector(".main");
+
+let buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => button.addEventListener("click", populateDisplay));
