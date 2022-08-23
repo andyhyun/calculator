@@ -4,11 +4,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #191919;
+  background: #11111d;
 }
 
 .calculator {
-  background: #fcf9e9;
+  background: #2f2f49;
   padding: 20px 10px;
   width: 420px;
   border-radius: 12px;
@@ -55,6 +55,8 @@ body {
 }
 
 button {
+  color: #d5cac6;
+  background: #262640;
   font-size: 18px;
   border: 2px solid black;
   border-radius: 6px;
