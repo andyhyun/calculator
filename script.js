@@ -62,7 +62,7 @@ function doOperation() {
     let number = splitMemoryText[0];
     let operator = splitMemoryText[1];
     let result = operate(operator, number, main.textContent);
-    if (result === Infinity) {
+    if (!isFinite(result) || Number.isNaN(result)) {
       showError();
       return;
     }
@@ -75,7 +75,7 @@ function doOperation() {
 function doEquals() {
   if (
     main.textContent.length === 0 ||
-    memory.textContent.length === 0 ||
+    memory.textContent.split(" ").length !== 2 ||
     main.textContent.charAt(main.textContent.length - 1) === "."
   ) {
     return;
@@ -87,7 +87,7 @@ function doEquals() {
   let operator = splitMemoryText[1];
   let secondNumber = splitMemoryText[2];
   let result = operate(operator, firstNumber, secondNumber);
-  if (result === Infinity) {
+  if (!isFinite(result) || Number.isNaN(result)) {
     showError();
     return;
   }
